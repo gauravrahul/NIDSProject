@@ -1,0 +1,6 @@
+{
+    "interfaces": ["\\Device\\NPF_Loopback"],
+    "log_level": "INFO",
+    "packet_types": ["TCP", "UDP", "ICMP"],
+    "signature_file": "signatures.json"
+}

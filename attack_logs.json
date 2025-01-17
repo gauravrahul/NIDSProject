@@ -1,0 +1,17 @@
+[
+    {
+      "timestamp": "2024-12-24T14:12:00Z",
+      "source_ip": "192.168.1.1",
+      "destination_ip": "10.0.0.2",
+      "protocol": "TCP",
+      "attack_type": "DDoS"
+    },
+    {
+      "timestamp": "2024-12-24T14:15:00Z",
+      "source_ip": "192.168.1.5",
+      "destination_ip": "10.0.0.3",
+      "protocol": "UDP",
+      "attack_type": "Port Scan"
+    }
+  ]
+  

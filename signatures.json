@@ -1,0 +1,37 @@
+[
+    { "id": "1", 
+    "description": "SYN attack", 
+    "pattern": "^SYN$", 
+    "severity": "High",
+    "protocol": "TCP"
+    },
+    {
+      "id": "2",
+      "description": "SQL Injection Attempt",
+      "pattern": "(\\bOR\\b|\\bAND\\b)\\s+\\d+=\\d+|UNION\\s+SELECT|INSERT\\s+INTO|--|;--|/\\*|\\*/|@@|CHAR\\(|NCHAR\\(|VARCHAR\\(|ALTER\\s+TABLE",
+      "severity": "Critical",
+      "protocol": "TCP"
+    },
+    {
+      "id": "3",
+      "description": "Cross-Site Scripting (XSS)",
+      "pattern": "(<script.*?>.*?</script>)|(%3Cscript%3E)|((on\\w+)=['\"]?.*?['\"]?)|(<iframe.*?>)",
+      "severity": "High",
+      "protocol": "HTTP"
+    },
+    {
+      "id": "4",
+      "description": "UDP Amplification",
+      "pattern": "^(DNS|NTP|SSDP|SNMP|CLDAP|Memcached)$",
+      "severity": "Medium",
+      "protocol": "UDP"
+    },
+    {
+      "id": "5",
+      "description": "DNS Amplification",
+      "pattern": "(\\x00\\xff)|\\bANY\\b",
+      "severity": "High",
+      "protocol": "UDP"
+    }
+  ]
+  

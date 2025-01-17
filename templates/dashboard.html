@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntruAlert</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+
+  <!-- Enhanced Styling -->
+  <style>
+    /* Global Page Styling */
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #000000;
+      color: #FFFFFF;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Styling */
+    h1, h2 {
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    /* Section Spacing */
+    section {
+      margin-top: 24px;
+    }
+
+    /* Container for Overall Alignment */
+    .container {
+      max-width: 1200px; /* Restricts the width */
+      margin: 0 auto;    /* Centers the content */
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 8px; /* Vertical spacing between rows */
+      margin-bottom: 24px;
+    }
+
+    table th, table td {
+      font-size: 0.9rem;
+      padding: 14px 20px;
+      text-align: center;
+      border: none; /* Removes grid borders */
+    }
+
+    /* Table Header Styling */
+    table th {
+      background-color: #0A0A0A;
+      color: #CCCCCC;
+      font-weight: bold;
+      text-transform: capitalize;
+      letter-spacing: 0.05em;
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+
+    /* Table Row Styling */
+    table tbody tr {
+      background-color: #111;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Hover Effect */
+    table tbody tr:hover {
+      background-color: #1a1a1a;
+      transform: scale(1.01);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    /* Rounded Corners for First and Last Cells */
+    table tbody tr td:first-child {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    table tbody tr td:last-child {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    /* Severity Colors */
+    .text-red-500 {
+      color: #f56565;
+      font-weight: bold;
+    }
+
+    .text-yellow-500 {
+      color: #ecc94b;
+      font-weight: bold;
+    }
+
+    .text-green-500 {
+      color: #48bb78;
+      font-weight: bold;
+    }
+
+    /* Neutral/Undefined Severity */
+    .text-gray-500 {
+      color: #999999;
+      font-weight: bold;
+    }
+
+    /* Container for Tables */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 8px;
+      padding: 8px;
+    }
+
+    /* Logout Button Styling */
+    #logout-btn {
+      background-color: #E61919;
+      color: #FFFFFF;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #logout-btn:hover {
+      background-color: #B71C1C;
+    }
+
+    #search-bar {
+    padding-left: 2.5rem; /* Space for the icon */
+}
+
+#search-bar::placeholder {
+    color: #888;
+}
+
+#search-bar:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px #2563eb;
+}
+  </style>
+</head>
+
+<body>
+  <div class="container py-10">
+    <!-- Header -->
+    <header class="flex justify-between items-center border-b border-gray-700 pb-6 mb-10">
+      <h1 class="text-4xl font-bold">IntruAlert Dashboard</h1>
+      <button id="logout-btn" class="bg-[#E61919] hover:bg-[#B71C1C] text-white font-bold py-2 px-8 rounded shadow-lg">Logout</button>
+    </header>
+
+   <!-- Unified Real-Time Attack Logs -->
+<section class="mt-12">
+    <h2 class="text-2xl font-bold mb-4">Real-Time Attack Logs</h2>
+
+   <!-- Search Bar with Updated Icon -->
+<div class="flex items-center mb-6">
+    <div class="relative w-full">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z" />
+            </svg>
+        </span>
+        <input type="text" id="search-bar" placeholder="Search for Source IP, Destination IP, Protocol Type or Attack Type"
+               class="pl-10 pr-4 py-2 w-full bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring focus:border-blue-500">
+    </div>
+</div>
+
+
+    <!-- Attack Logs Table -->
+    <div class="table-container overflow-hidden rounded-lg border border-gray-700 shadow-deep">
+        <table class="text-white w-full text-center">
+            <thead class="bg-gray-900">
+                <tr>
+                    <th class="py-3 px-4">Time</th>
+                    <th class="py-3 px-4">Source IP</th>
+                    <th class="py-3 px-4">Destination IP</th>
+                    <th class="py-3 px-4">Protocol Type</th>
+                    <th class="py-3 px-4">Attack Type</th>
+                    <th class="py-3 px-4">Severity</th>
+                </tr>
+            </thead>
+            <tbody id="attackLogs" class="bg-black divide-y divide-gray-700">
+                <!-- Logs will populate here -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+      <!-- Threat Summary -->
+      <section class="mt-12">
+        <h2 class="text-2xl font-bold mb-4">Threat Summary</h2>
+        <div class="table-container overflow-hidden rounded-lg border border-gray-700 shadow-deep">
+            <table class="text-white w-full text-center">
+                <thead class="bg-gray-900">
+                    <tr>
+                        <th class="py-3 px-4">Attack Type</th>
+                        <th class="py-3 px-4">Count</th>
+                        <th class="py-3 px-4">Severity</th>
+                    </tr>
+                </thead>
+                <tbody id="threatSummary" class="bg-black divide-y divide-gray-700">
+                  <!-- Threat summary will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+      </section>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="/static/script.js"></script>
+</body>
+</html>
